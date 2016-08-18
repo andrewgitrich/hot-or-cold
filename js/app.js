@@ -8,18 +8,19 @@ $(document).ready(function(){
  
 
 //click button to get user input
-$("#guessButton").click(function(){
+$("#guessButton").click(function(event){
+  event.preventDefault();
   var userGs = $("#userGuess").val();
   evaluateGuess(userGs);
 });
 
 
 //validate user input, if true append, if false alert
-  function evaluateGuess(userGs){//had a num placeholder and userGs said was undefined?
-    if(parseInt(userGs) && 100 >= userGs >= 1){
-      $("#guessList").append("<li>" + userGs + "</li>");
-      $("#userGuess").val("");//need explanation on this code, copied from my other code?
-      compare(userGs);
+  function evaluateGuess(num){//had a num placeholder and num said was undefined?
+    if(parseInt(num) && 100 >= num >= 1){
+      $("#guessList").append("<li>" + num + "</li>");
+      $("#userGuess").val("");//clears the field
+      compare(num);
       guessCount++;
       $("#count").text(guessCount);
       }
@@ -42,6 +43,9 @@ $("#guessButton").click(function(){
     $("#feedback").text("a bit hot!");
   }
   else if(difference <= 15 ){
+    $("#feedback").text("warm!");
+  }
+  else if(difference <= 20 ){
     $("#feedback").text("cold!");
   }
   else{
@@ -49,9 +53,15 @@ $("#guessButton").click(function(){
     }
   }
 
-
-
-
+// reset game
+$(".new").click(function(){
+  $("#guessList").empty();
+  $("#feedback").text("Make your Guess!");
+  guessCount = 0;
+  $("#count").text(guessCount);
+  numToGuess = Math.floor(Math.random() * 101);
+  console.log(numToGuess);
+});
 
 
 
