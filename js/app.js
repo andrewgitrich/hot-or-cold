@@ -3,6 +3,7 @@ $(document).ready(function(){
 
   //generates a random # 0-1, times 101, then rounds down.
   var numToGuess = Math.floor(Math.random() * 101);
+  
   var guessCount = 0;
   console.log(numToGuess);
  
@@ -16,16 +17,16 @@ $("#guessButton").click(function(event){
 
 
 //validate user input, if true append, if false alert
-  function evaluateGuess(num){//had a num placeholder and num said was undefined?
+  function evaluateGuess(num){
     if(parseInt(num) && 100 >= num >= 1){
       $("#guessList").append("<li>" + num + "</li>");
-      $("#userGuess").val("");//clears the field
+      $("#userGuess").val("");
       compare(num);
       guessCount++;
       $("#count").text(guessCount);
       }
     else{
-      alert("Please enter a number between 1-100");//this deletes the appended guessed numbers I think
+      alert("Please enter a number between 1-100");
     }
   }
 
@@ -49,9 +50,10 @@ $("#guessButton").click(function(event){
     $("#feedback").text("cold!");
   }
   else{
-    $("#feedback").text("nope");
+    $("#feedback").text("not even close");
     }
   }
+
 
 // reset game
 $(".new").click(function(){
@@ -67,7 +69,7 @@ $(".new").click(function(){
 
 
 
-
+//starter code
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
